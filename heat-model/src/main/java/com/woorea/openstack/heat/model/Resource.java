@@ -1,10 +1,13 @@
 package com.woorea.openstack.heat.model;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.map.annotate.JsonRootName;
 
 import java.util.Date;
 import java.util.List;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonRootName("resource")
 public class Resource {
     @JsonProperty("resource_name")
     private String name;

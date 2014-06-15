@@ -12,20 +12,24 @@ import java.util.Collections;
 
 public class HeatListStacks {
 
-    private static String TEMPLATE = "{\n" +
-            "    \"HeatTemplateFormatVersion\": \"2012-12-12\",\n" +
-            "    \"Parameters\": {},\n" +
-            "    \"Mappings\": {},\n" +
-            "    \"Resources\": {\n" +
-            "        \"my-test-server\": {\n" +
-            "            \"Type\": \"OS::Nova::Server\",\n" +
-            "            \"Properties\": {\n" +
-            "                \"flavor\": \"m1.small\",\n" +
-            "                \"image\": \"centos:latest\"\n" +
-            "            }\n" +
-            "        }\n" +
-            "    }\n" +
-            "}";
+    private static String TEMPLATE = "heat_template_version: 2013-05-23\n" +
+            "\n" +
+            "description: >\n" +
+            "  HOT template to deploy two servers into an existing neutron tenant network and\n" +
+            "  assign floating IP addresses to each server so they are routable from the\n" +
+            "  public network.\n" +
+            "\n" +
+            "resources:\n" +
+            "  server1:\n" +
+            "    type: OS::Nova::Server\n" +
+            "    properties:\n" +
+            "      name: Server1\n" +
+            "      image: GOLDIMAGE\n" +
+            "      flavor: Dual\n" +
+            "\n" +
+            "outputs:\n" +
+            "  server1_private_ip:\n" +
+            "    description: IP address of server1 in private network\n";
 
     /**
      * @param args
