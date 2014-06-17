@@ -7,13 +7,26 @@ public class OpenStackResponseException extends RuntimeException {
 	protected String message;
 
 	protected int status;
+    
+    protected Explanation explanation;
 
 	public OpenStackResponseException(String message, int status) {
 		this.message = message;
 		this.status = status;
 	}
 
-	public String getMessage() {
+    public OpenStackResponseException(String message, int status,Explanation explanation) {
+        this.explanation=explanation;
+        this.message = message;
+        this.status = status;
+    }
+
+
+    public Explanation getExplanation() {
+        return explanation;
+    }
+
+    public String getMessage() {
 		return message;
 	}
 

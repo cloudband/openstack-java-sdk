@@ -8,7 +8,7 @@
 	<description>OpenStack Java SDK</description>
 
 	<properties>
-		<skip.sign>false</skip.sign>
+		<skip.sign>true</skip.sign>
 	</properties>
 
 	<parent>
@@ -145,4 +145,12 @@
             </plugin>
 		</plugins>
 	</build>
+	    <distributionManagement>
+	         <snapshotRepository>
+	             <id>snapshots</id>
+	             <name>Nexus Snapshot</name>
+	             <url>http://nexus/nexus/content/repositories/thirdparty-snapshots</url>
+	         </snapshotRepository>
+	     </distributionManagement>
+
 </project>

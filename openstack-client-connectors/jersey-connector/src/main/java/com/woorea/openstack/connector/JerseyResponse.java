@@ -1,12 +1,13 @@
 package com.woorea.openstack.connector;
 
+import com.sun.jersey.api.client.ClientResponse;
+import com.woorea.openstack.base.client.Explanation;
+import com.woorea.openstack.base.client.OpenStackResponse;
+import com.woorea.openstack.base.client.OpenStackResponseException;
+
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.sun.jersey.api.client.ClientResponse;
-import com.woorea.openstack.base.client.OpenStackResponse;
-import com.woorea.openstack.base.client.OpenStackResponseException;
 
 public class JerseyResponse implements OpenStackResponse {
 
@@ -20,7 +21,7 @@ public class JerseyResponse implements OpenStackResponse {
 	public <T> T getEntity(Class<T> returnType) {
 		if(response.getStatus() >= 400) {
 			throw new OpenStackResponseException(response.getClientResponseStatus().getReasonPhrase(), 
-					response.getStatus());
+					response.getStatus(),response.getEntity(Explanation.class));
 		}
 		if(response.hasEntity() && returnType != null && Void.class != returnType) {
 			return response.getEntity(returnType);
